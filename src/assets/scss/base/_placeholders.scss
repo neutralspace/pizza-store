@@ -1,0 +1,43 @@
+%base-font-style {
+  font-family: Roboto, Arial;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  color: map-get($font-colors, base);
+  letter-spacing: 0.2px;
+}
+
+%accent-font-style-sm {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+%accent-font-style-md {
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+%logo-font-style {
+  font-size: 24px;
+  line-height: 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+%pseudo-element {
+  content: '';
+  position: absolute;
+  display: block;
+}
+
+%flex-space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}

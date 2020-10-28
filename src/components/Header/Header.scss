@@ -1,0 +1,37 @@
+@import '../../assets/scss/base/variables';
+@import '../../assets/scss/base/placeholders';
+
+.header {
+  padding: map-get($offsets, md) 0 map-get($offsets, sm) 0;
+  border-bottom: map-get($border-sizes, lg) solid map-get($colors, accent-dark);
+
+  &-content {
+    @extend %flex-space-between;
+  }
+}
+
+.nav {
+  display: flex;
+
+  &-list {
+    display: flex;
+
+    &-item {
+      &:not(:first-child) {
+        margin-left: map-get($offsets, md);
+      }
+    }
+  }
+
+  &-link {
+    @extend %accent-font-style-md;
+
+    padding: 0;
+    transition: color ease map-get($transition-time, hover);
+
+    &:hover,
+    &:active {
+      color: map-get($colors, accent-bright);
+    }
+  }
+}
