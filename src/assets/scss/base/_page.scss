@@ -1,0 +1,9 @@
+html {
+  @extend %base-font-style;
+
+  color: map-get($font-colors, base);
+}
+
+a {
+  color:  map-get($font-colors, base);
+}

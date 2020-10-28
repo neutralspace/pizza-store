@@ -1,0 +1,11 @@
+@import '../../assets/scss/base/variables';
+@import '../../assets/scss/base/placeholders';
+
+.footer {
+  display: flex;
+  height: $footer-height;
+  align-items: center;
+  justify-content: center;
+  color: map-get($font-colors, accent-dark-inverse);
+  background: map-get($colors, accent-dark);
+}
