@@ -9,7 +9,6 @@ import './Header.scss';
  * @returns {JSX} - header component.
  */
 const Header = (): JSX.Element => {
-
   return (
     <header className="header">
       <Container>
