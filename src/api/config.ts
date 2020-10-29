@@ -13,8 +13,17 @@ export const apiConfig = {
     url: '/pizzas',
     mapResponse: (response) => {
       if (!response) return null;
-
       return response.val();
     }
+  },
+  getSessionData: {
+    url: '/sessions/{sessionId}',
+    mapResponse: (response) => {
+      if (!response) return null;
+      return response.val();
+    }
+  },
+  addToCart: {
+    url: '/sessions/{sessionId}/cart',
   }
 }

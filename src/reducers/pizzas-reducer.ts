@@ -1,17 +1,24 @@
-import { ActionObjectType } from '@actions/common/constants';
-import { GET_PIZZAS_LIST } from '@actions/pizzas/constants';
+import { ActionObjectType } from '@actions/common';
+import { GET_PIZZAS_LIST } from '@actions/pizzas';
+import { CURRENCY_TYPES } from './session-reducer';
 
-interface PizzaType {
+export interface PizzaType {
+  id: string,
   name: string;
   img: string;
   ingredients: string;
+  price: { [key: CURRENCY_TYPES]: number };
 }
 
-export type PizzasListType = PizzaType[];
+export type PizzasListType = {[key: string]: PizzaType};
 
-const pizzasReducer = (pizzasList: PizzasListType = [], action: ActionObjectType): PizzasListType => {
-  if (action.type === GET_PIZZAS_LIST) return action.payload.pizzasList;
-  return pizzasList;
+const pizzasReducer = (pizzasList: PizzasListType = {}, action: ActionObjectType): PizzasListType => {
+  switch (action.type) {
+    case GET_PIZZAS_LIST:
+      return action.payload.pizzasList;
+    default:
+      return pizzasList;
+  }
 }
 
 export default pizzasReducer;

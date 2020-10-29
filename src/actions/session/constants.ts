@@ -1,0 +1,2 @@
+export const GET_SESSION_DATA = 'GET_SESSION_DATA';
+export const SET_SESSION_DATA = 'SET_SESSION_DATA';
