@@ -1,13 +1,16 @@
-interface Pizza {
+import { ActionObjectType } from '@actions/common/constants';
+import { GET_PIZZAS_LIST } from '@actions/pizzas/constants';
+
+interface PizzaType {
   name: string;
   img: string;
   ingredients: string;
 }
 
-type PizzasList = Pizza[];
+export type PizzasListType = PizzaType[];
 
-const pizzasReducer = (pizzasList: PizzasList = [], action): PizzasList => {
-  if (action.type === 'GET_PIZZAS_LIST') return action.payload;
+const pizzasReducer = (pizzasList: PizzasListType = [], action: ActionObjectType): PizzasListType => {
+  if (action.type === GET_PIZZAS_LIST) return action.payload.pizzasList;
   return pizzasList;
 }
 

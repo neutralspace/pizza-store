@@ -1,0 +1,1 @@
+export const GET_PIZZAS_LIST = 'GET_PIZZAS_LIST';
