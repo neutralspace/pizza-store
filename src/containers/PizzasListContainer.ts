@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import PizzasList from '@components/PizzasList/PizzasList';
-import { getPizzasList } from '../actions/pizzas-actions';
+import { getPizzasList } from '../actions/pizzas';
 
 const mapStateToProps = (state) => {
   return {

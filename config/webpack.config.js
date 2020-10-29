@@ -334,6 +334,9 @@ module.exports = function (webpackEnv) {
         '@scss': path.resolve(__dirname, '../src/assets/scss/'),
         '@components': path.resolve(__dirname, '../src/components/'),
         '@pages': path.resolve(__dirname, '../src/pages/'),
+        '@api': path.resolve(__dirname, '../src/api/'),
+        '@actions': path.resolve(__dirname, '../src/actions/'),
+        '@reducers': path.resolve(__dirname, '../src/reducers/'),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

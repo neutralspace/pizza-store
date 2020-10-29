@@ -21,7 +21,10 @@
     "jsx": "react",
     "paths": {
       "@components/*" : ["src/components/*"],
-      "@scss/*" : ["src/assets/scss/*"]
+      "@scss/*" : ["src/assets/scss/*"],
+      "@api/*" : ["src/api/*"],
+      "@actions/*" : ["src/actions/*"],
+      "@reducers/*" : ["src/reducers/*"],
     }
   },
   "include": [
