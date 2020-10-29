@@ -14,7 +14,8 @@ interface PizzasListProps {
  * @returns {JSX} - pizzas list component.
  */
 const PizzasList = (props: PizzasListProps): JSX.Element => {
-  const { pizzas, getPizzasList } = props;
+  const { pizzas, pizzasInCart, getPizzasList } = props;
+  const pizzasIds = Object.keys(pizzas);
 
   useEffect(() => {
     if (getPizzasList) {
@@ -25,14 +26,18 @@ const PizzasList = (props: PizzasListProps): JSX.Element => {
   return (
     <>
     {
-      Boolean(pizzas?.length > 0)
+      Boolean(pizzasIds?.length > 0)
       &&
       <Row>
         {
-          pizzas.map((item, index) => {
+          pizzasIds.map((pizzaId) => {
+            const pizza = pizzas[pizzaId];
+            const isInCart = Boolean(pizzasInCart?.[pizzaId]);
+            const pizzasInCartQty = Object.keys(pizzasInCart || {}).length;
+
             return (
-              <Col key={index}>
-                {item.name}
+              <Col key={pizzaId}>
+                { pizza.name }
               </Col>
             )
           })
