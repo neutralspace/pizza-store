@@ -1,16 +1,22 @@
 import { ActionObjectType } from '@actions/common';
 import { GET_SESSION_DATA } from '@actions/session';
 import { PizzasListType } from './pizzas-reducer';
+import {createPriceObj} from '../helpers';
 
 export enum CURRENCY_TYPES {
   EURO,
   DOLLAR,
 }
 
+export interface PriceType {
+  [CURRENCY_TYPES.EURO]: number;
+  [CURRENCY_TYPES.DOLLAR]: number;
+}
+
 export interface CartType {
-  itemsCount: number;
   items: PizzasListType;
-  total: number;
+  totalQty: number;
+  totalPrice: PriceType;
 }
 
 export interface SessionType {
@@ -23,9 +29,9 @@ export interface SessionType {
 const defaultSessionState = {
   id: undefined,
   cart: {
-    itemsCount: 0,
     items: {},
-    total: 0,
+    totalQty: 0,
+    totalPrice: createPriceObj(0, 0),
   },
   currency: CURRENCY_TYPES.EURO,
 }

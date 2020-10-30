@@ -1,14 +1,18 @@
 import { connect } from 'react-redux';
 import PizzasList from '@components/PizzasList/PizzasList';
-import { getPizzasList } from '../actions/pizzas';
+import { getPizzasList } from '@actions/pizzas';
+import { updateCart } from '@actions/cart/thunks';
 
 const mapStateToProps = (state) => {
   return {
     pizzas: state.pizzas,
-    pizzasInCart: state.session.cart.items,
+    cart: state.session.cart,
   }
 };
 
 export default connect(mapStateToProps,
-  { getPizzasList }
+  {
+    getPizzasList,
+    updateCart,
+  }
   )(PizzasList);

@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import { apiConfig, firebaseConfig } from './config';
-import {PizzasListType, PizzaType} from '../reducers/pizzas-reducer';
-import {SessionType} from '../reducers/session-reducer';
+import { PizzasListType, PizzaType } from '@reducers/pizzas-reducer';
+import { CartType, SessionType} from '@reducers/session-reducer';
 
 /**
  * Singleton class for handling all database interactions.
@@ -25,7 +25,6 @@ export default class DatabaseHandler {
 
     return new Promise((resolve, reject) => {
       this.database.ref(url).once('value').then((snapshot) => {
-        console.log(snapshot.val());
         resolve(mapResponse(snapshot));
       }).catch((error) => {
         reject(error);
@@ -46,30 +45,22 @@ export default class DatabaseHandler {
     })
   }
 
-  addToCart(pizza: PizzaType, totalPizzasQty: number): Promise<any> {
+  updateCart(newCart: CartType): Promise<SessionType> {
     const { url: urlTemplate } = apiConfig.addToCart;
     const url = urlTemplate.replace('{sessionId}', 2);
 
     return new Promise((resolve, reject) => {
-      this.database.ref(`${url}/items/${pizza.id}`).set({
-        id: pizza.id,
-        name: pizza.name,
-        price: pizza.price,
-        qty: 1,
-      }, (error) => {
+      this.database.ref(`${url}`).set(newCart, (error) => {
         if (error) {
           reject(error);
         }
 
-        const updatedTotalQty = totalPizzasQty + 1;
-        this.database.ref(`${url}/itemsQty`).set(updatedTotalQty, (error) => {
-          if (error) {
+        this.getSessionData().then((data) => {
+            resolve(data);
+          }).catch((error) => {
             reject(error);
-          }
-
-          resolve();
+          })
         });
-      })
-    })
+    });
   }
 }

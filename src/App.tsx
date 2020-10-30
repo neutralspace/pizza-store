@@ -13,8 +13,6 @@ const App = (props): JSX.Element => {
     }
   }, []);
 
-  console.log(props.session);
-
   return (
     <>
       <Header />
