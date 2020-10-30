@@ -1,12 +1,12 @@
 import DatabaseHandler from '@api/databaseHandler';
-import { getSessionDataAction } from './action-creators';
-import { SessionType } from '@reducers/session-reducer';
+import { getSessionDataAction } from '@actions/session/action-creators';
+import { CartType } from '@reducers/session-reducer';
 
 const databaseHandler = DatabaseHandler.GET_INSTANCE();
 
-export const getSessionData = (): Function => {
+export const updateCart = (newCart: CartType): Function => {
   return (dispatch) => {
-    databaseHandler.getSessionData().then((data: SessionType) =>{
+    databaseHandler.updateCart(newCart).then((data) =>{
       dispatch(getSessionDataAction(data));
     }).catch((error) => {
       console.log('Error: ', error);
