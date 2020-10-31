@@ -23,7 +23,17 @@ export const apiConfig = {
       return response.val();
     }
   },
-  addToCart: {
+  setSessionData: {
+    url: '/sessions/{sessionId}',
+  },
+  createSessionId: {
+    url: '/sessions/',
+    mapResponse: (response) => {
+      if (!response) return null;
+      return String(response.numChildren() + 1);
+    }
+  },
+  updateCart: {
     url: '/sessions/{sessionId}/cart',
   }
 }
