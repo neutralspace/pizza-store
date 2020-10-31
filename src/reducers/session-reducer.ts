@@ -1,7 +1,7 @@
 import { ActionObjectType } from '@actions/common';
 import { GET_SESSION_DATA } from '@actions/session';
 import { PizzasListType } from './pizzas-reducer';
-import {createPriceObj} from '../helpers';
+import { createPriceObj } from '../helpers';
 
 export enum CURRENCY_TYPES {
   EURO,
@@ -25,8 +25,7 @@ export interface SessionType {
   currency: CURRENCY_TYPES;
 }
 
-
-const defaultSessionState = {
+export const defaultSessionState = {
   id: undefined,
   cart: {
     items: {},

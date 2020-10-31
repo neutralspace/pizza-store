@@ -2,9 +2,15 @@ import React, { useEffect } from 'react';
 import '@scss/style.scss';
 import Header from '@components/Header/Header';
 import Footer from '@components/Footer/Footer';
-import PizzasListContainer from './containers/PizzasListContainer';
+import PizzasListContainer from '@containers/PizzasListContainer';
+import { SessionType } from '@reducers/session-reducer';
 
-const App = (props): JSX.Element => {
+interface AppProps {
+  session: SessionType;
+  getSessionData: Function;
+}
+
+const App = (props: AppProps): JSX.Element => {
   const { session, getSessionData }= props;
 
   useEffect(() => {

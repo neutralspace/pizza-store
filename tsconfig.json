@@ -25,6 +25,7 @@
       "@api/*" : ["src/api/*"],
       "@actions/*" : ["src/actions/*"],
       "@reducers/*" : ["src/reducers/*"],
+      "@containers/*" : ["src/containers/*"]
     }
   },
   "include": [

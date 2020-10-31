@@ -1,6 +1,10 @@
-import { CURRENCY_TYPES, PriceType } from '@reducers/session-reducer';
 
-export const createPriceObj = (priceInEuros: number, priceInDollars: number): PriceType => ({
+export enum CURRENCY_TYPES {
+  EURO,
+  DOLLAR,
+}
+
+export const createPriceObj = (priceInEuros: number, priceInDollars: number) => ({
   [CURRENCY_TYPES.EURO]: priceInEuros,
   [CURRENCY_TYPES.DOLLAR]: priceInDollars,
 });

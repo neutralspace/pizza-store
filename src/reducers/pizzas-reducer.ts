@@ -1,6 +1,6 @@
 import { ActionObjectType } from '@actions/common';
 import { GET_PIZZAS_LIST } from '@actions/pizzas';
-import { CURRENCY_TYPES } from './session-reducer';
+import { CURRENCY_TYPES } from './session/session-reducer';
 
 export interface PizzaType {
   id: string,

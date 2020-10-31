@@ -1,13 +1,13 @@
 import firebase from 'firebase';
 import { apiConfig, firebaseConfig } from './config';
 import { PizzasListType, PizzaType } from '@reducers/pizzas-reducer';
-import { CartType, SessionType} from '@reducers/session-reducer';
+import { CartType, SessionType, defaultSessionState } from '@reducers/session-reducer';
 
 /**
  * Singleton class for handling all database interactions.
  */
 export default class DatabaseHandler {
-  static _instance: DatabaseHandler;
+  private static _instance: DatabaseHandler;
   private database: {[key: string]: any};
 
   private constructor() {
@@ -32,9 +32,9 @@ export default class DatabaseHandler {
     })
   }
 
-  getSessionData(): Promise<SessionType> {
+  getSessionData(sessionId?: string): Promise<SessionType> {
     const { url: urlTemplate, mapResponse } = apiConfig.getSessionData;
-    const url = urlTemplate.replace('{sessionId}', 2);
+    const url = urlTemplate.replace('{sessionId}', sessionId);
 
     return new Promise((resolve, reject) => {
       this.database.ref(url).once('value').then((snapshot) => {
@@ -45,9 +45,51 @@ export default class DatabaseHandler {
     })
   }
 
-  updateCart(newCart: CartType): Promise<SessionType> {
-    const { url: urlTemplate } = apiConfig.addToCart;
-    const url = urlTemplate.replace('{sessionId}', 2);
+  createSession(): Promise<SessionType> {
+    const { url, mapResponse } = apiConfig.createSessionId;
+
+    return new Promise((resolve, reject) => {
+      this.database.ref(url).once('value').then((snapshot) => {
+        const newSessionId = mapResponse(snapshot);
+
+        if (!newSessionId) reject();
+
+        this.setSessionData(newSessionId, {
+          ...defaultSessionState,
+          id: newSessionId,
+        }).then((newSession) => {
+          resolve(newSession);
+        }).catch((error) => {
+          reject(error);
+        });
+      }).catch((error) => {
+        reject(error);
+      });
+    })
+  }
+
+  setSessionData(sessionId: string, newSessionData: SessionType): Promise<SessionType> {
+    const { url: urlTemplate } = apiConfig.setSessionData;
+    const url = urlTemplate.replace('{sessionId}', sessionId);
+
+    return new Promise((resolve, reject) => {
+      this.database.ref(url).set(newSessionData, (error) => {
+        if (error) {
+          reject(error);
+        }
+
+        this.getSessionData(sessionId).then((data) => {
+          resolve(data);
+        }).catch((error) => {
+          reject(error);
+        })
+      });
+    });
+  }
+
+  updateCart(sessionId: string, newCart: CartType): Promise<SessionType> {
+    const { url: urlTemplate } = apiConfig.updateCart;
+    const url = urlTemplate.replace('{sessionId}', sessionId);
 
     return new Promise((resolve, reject) => {
       this.database.ref(`${url}`).set(newCart, (error) => {
@@ -55,7 +97,7 @@ export default class DatabaseHandler {
           reject(error);
         }
 
-        this.getSessionData().then((data) => {
+        this.getSessionData(sessionId).then((data) => {
             resolve(data);
           }).catch((error) => {
             reject(error);
