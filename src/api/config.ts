@@ -35,5 +35,35 @@ export const apiConfig = {
   },
   updateCart: {
     url: '/sessions/{sessionId}/cart',
-  }
+  },
+  authorizeAndGetUserData: {
+    url: '/users/{userId}',
+    mapResponse: (response, password) => {
+      if (!response) return null;
+
+      const responseData = response.val();
+      console.log(responseData);
+      if (!Boolean(responseData?.password)
+          || String(responseData?.password) !== String(password)) return null;
+      return responseData;
+    }
+  },
+  setUserData: {
+    url: '/users/{userId}',
+  },
+  checkIfUserExists: {
+    url: '/users/{userId}',
+    mapResponse: (response) => {
+      if (!response) return null;
+
+      return Boolean(response.val());
+    }
+  },
+  getUserData: {
+    url: '/users/{userId}',
+    mapResponse: (response) => {
+      if (!response) return null;
+      return response.val();
+    }
+  },
 }

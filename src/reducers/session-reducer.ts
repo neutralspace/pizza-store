@@ -25,7 +25,7 @@ export interface SessionType {
   currency: CURRENCY_TYPES;
 }
 
-export const defaultSessionState = {
+export const defaultSessionState: SessionType = {
   id: undefined,
   cart: {
     items: {},

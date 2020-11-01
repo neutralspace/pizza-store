@@ -1,7 +1,8 @@
 import firebase from 'firebase';
 import { apiConfig, firebaseConfig } from './config';
-import { PizzasListType, PizzaType } from '@reducers/pizzas-reducer';
+import { PizzasListType } from '@reducers/pizzas-reducer';
 import { CartType, SessionType, defaultSessionState } from '@reducers/session-reducer';
+import { UserDataType} from '@reducers/user-reducer';
 
 /**
  * Singleton class for handling all database interactions.
@@ -104,5 +105,67 @@ export default class DatabaseHandler {
           })
         });
     });
+  }
+
+  authorizeAndGetUserData(email: string, password: string): Promise<UserDataType> {
+    const { url: urlTemplate, mapResponse } = apiConfig.getUserData;
+    const userId = email?.replace(/\./g, '*');
+    const url = urlTemplate.replace('{userId}', userId);
+
+    return new Promise((resolve, reject) => {
+      this.database.ref(url).once('value').then((snapshot) => {
+        resolve(mapResponse(snapshot, password));
+      }).catch((error) => {
+        reject(error);
+      });
+    })
+  }
+
+  getUserData(email: string, password: string): Promise<UserDataType> {
+    const { url: urlTemplate, mapResponse } = apiConfig.getUserData;
+    const userId = email?.replace(/\./g, '*');
+    const url = urlTemplate.replace('{userId}', userId);
+
+    return new Promise((resolve, reject) => {
+      this.database.ref(url).once('value').then((snapshot) => {
+        resolve(mapResponse(snapshot, password));
+      }).catch((error) => {
+        reject(error);
+      });
+    })
+  }
+
+  setUserData(email: string, password: string, name: string, surname: string): Promise<UserDataType> {
+    const {url: urlTemplate } = apiConfig.setUserData;
+    const userId = email?.replace(/\./g, '*');
+    const url = urlTemplate.replace('{userId}', userId);
+
+    return new Promise((resolve, reject) => {
+      this.database.ref(`${url}`).set({
+        id: userId,
+        email,
+        password,
+        name,
+        surname,
+      }, (error) => {
+        if (error) {
+          reject(error);
+        }
+      });
+    });
+  }
+
+  checkIfUserExists(email: string): Promise<boolean> {
+    const { url: urlTemplate, mapResponse } = apiConfig.checkIfUserExists;
+    const userId = email?.replace(/\./g, '*');
+    const url = urlTemplate.replace('{userId}', userId);
+
+    return new Promise((resolve, reject) => {
+      this.database.ref(url).once('value').then((snapshot) => {
+        resolve(mapResponse(snapshot));
+      }).catch((error) => {
+        reject(error);
+      });
+    })
   }
 }

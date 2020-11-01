@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import Container from 'react-bootstrap/Container';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import '@scss/style.scss';
@@ -7,6 +7,7 @@ import Footer from '@components/Footer/Footer';
 import MainPage from '@pages/MainPage/MainPage';
 import CheckoutPage from '@pages/CheckoutPage/CheckoutPage';
 import { SessionType } from '@reducers/session-reducer';
+import AuthRegModal from './components/AuthRegModal/AuthRegModal';
 
 interface AppProps {
   session: SessionType;
@@ -14,17 +15,30 @@ interface AppProps {
 }
 
 const App = (props: AppProps): JSX.Element => {
-  const { session, getSessionData }= props;
+  const { session, user, getSessionData, getUserData }= props;
+  const [ isModalOpen, setIsModalOpen ] = useState(false);
+  console.log(user);
 
   useEffect(() => {
     if (getSessionData) {
       getSessionData();
     }
+    if (getUserData) {
+      getUserData();
+    }
   }, []);
+
+  const closeModal = (): void => {
+    setIsModalOpen(false);
+  }
+
+  const openModal = (): void => {
+    setIsModalOpen(true);
+  }
 
   return (
     <Router>
-      <Header />
+      <Header user={user} openAuthModalHandler={openModal} />
       <main>
         <Container>
           <Route exact path="/" component={MainPage} />
@@ -32,6 +46,9 @@ const App = (props: AppProps): JSX.Element => {
         </Container>
       </main>
       <Footer />
+
+      <AuthRegModal isModalOpen={isModalOpen}
+                    onHideHandler={closeModal}/>
     </Router>
   );
 }
