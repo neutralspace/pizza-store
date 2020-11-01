@@ -3,6 +3,9 @@ import { SESSION_COOKIE_KEY, USER_COOKIE_KEY } from './constants';
 
 const COOKIE_EXPIRE_DAYS = 7;
 
+/**
+ * Class for cookie handling. All methods are static.
+ */
 class CookieHandler {
   static getSessionId(): string {
     return Cookies.get(SESSION_COOKIE_KEY);

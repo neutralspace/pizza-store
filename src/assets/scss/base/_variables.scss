@@ -12,6 +12,7 @@ $font-colors: (
 $offsets: (
         sm: 10px,
         md: 15px,
+        lg: 30px,
 );
 
 $border-sizes: (
@@ -23,5 +24,7 @@ $border-sizes: (
 $transition-time: (
         hover: 0.2s,
 );
+
+$base-control-height: 40px;
 
 $footer-height: 40px;

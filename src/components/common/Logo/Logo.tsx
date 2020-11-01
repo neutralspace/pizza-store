@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { Link } from 'react-router-dom';
 import './Logo.scss';
 
 /**
@@ -8,9 +9,9 @@ import './Logo.scss';
  */
 const Logo = (): JSX.Element => {
   return (
-    <a href="/" className="logo">
+    <Link to="/" className="logo">
       Cool Pizzas store
-    </a>
+    </Link>
   );
 }
 

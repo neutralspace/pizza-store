@@ -1,0 +1,42 @@
+@import '../../../assets/scss/base/variables';
+@import '../../../assets/scss/base/placeholders';
+
+$placeholder-color: map-get($font-colors, hint);
+
+// Input field container with field itself and label
+
+.input-row {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.input {
+  @extend %accent-font-style-md;
+
+  width: 100%;
+  height: $base-control-height;
+  border: map-get($border-sizes, sm) solid map-get($colors, accent-dark);
+  transition: all map-get($transition-time, focus) ease;
+
+  &:hover,
+  &:focus {
+    border-color: map-get($colors, accent-bright);
+  }
+
+  &-label {
+    @extend %accent-font-style-sm;
+
+    display: block;
+  }
+
+  &-error {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: map-get($font-colors, error);
+  }
+}
+

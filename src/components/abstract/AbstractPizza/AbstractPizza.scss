@@ -1,0 +1,50 @@
+@import '../../../assets/scss/base/variables';
+@import '../../../assets/scss/base/placeholders';
+
+.pizza {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding: map-get($offsets, md);
+  margin-bottom: map-get($offsets, md);
+  border: map-get($border-sizes,sm) solid map-get($colors, accent-dark);
+
+  &-title {
+    @extend %list-item-title-font-style;
+
+    display: -webkit-box;
+    height: 48px;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    margin-bottom: map-get($offsets, md);
+    overflow: hidden;
+  }
+
+  &-img-wrapper {
+    width: 100px;
+    margin-bottom: auto;
+    overflow: hidden;
+  }
+
+  &-img {
+    max-width: 100%;
+    object-fit: cover;
+  }
+
+  &-price {
+    @extend %accent-font-style-md;
+
+    margin-bottom: map-get($offsets, sm);
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  &-qty-input {
+    .input {
+      padding-left: map-get($offsets, md);
+    }
+  }
+}

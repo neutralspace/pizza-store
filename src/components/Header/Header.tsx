@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import Container from 'react-bootstrap/Container';
+import { Link } from 'react-router-dom';
 import Logo from '@components/common/Logo/Logo';
 import './Header.scss';
 
@@ -23,9 +24,9 @@ const Header = (): JSX.Element => {
                 </a>
               </li>
               <li className="nav-list-item">
-                <a href="#" className="nav-link">
+                <Link to="/checkout" className="nav-link">
                   Cart
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
