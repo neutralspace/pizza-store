@@ -1,0 +1,25 @@
+@import '../../../assets/scss/base/variables';
+@import '../../../assets/scss/base/placeholders';
+
+.form {
+  .input-row {
+    margin-bottom: map-get($offsets, md);
+  }
+
+  &-type-toggle {
+    @extend %modal-text-font-style;
+
+    text-align: center;
+    margin-top: map-get($offsets, lg);
+  }
+
+  .button {
+    width: 100%;
+    margin-top: map-get($offsets, md);
+    text-align: center;
+  }
+
+  &-error {
+    color: map-get($font-colors, error);
+  }
+}

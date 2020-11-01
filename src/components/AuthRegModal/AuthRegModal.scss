@@ -1,0 +1,8 @@
+@import '../../assets/scss/base/variables';
+@import '../../assets/scss/base/placeholders';
+
+.auth-modal {
+  .modal-content {
+    padding: map-get($offsets, lg);
+  }
+}

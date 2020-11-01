@@ -18,6 +18,8 @@ $placeholder-color: map-get($font-colors, hint);
 
   width: 100%;
   height: $base-control-height;
+  padding: 0 map-get($offsets, sm);
+  text-transform: none;
   border: map-get($border-sizes, sm) solid map-get($colors, accent-dark);
   transition: all map-get($transition-time, focus) ease;
 
@@ -27,12 +29,15 @@ $placeholder-color: map-get($font-colors, hint);
   }
 
   &-label {
-    @extend %accent-font-style-sm;
+    @extend %accent-font-style-md;
 
     display: block;
+    margin-bottom: map-get($offsets, sm);
   }
 
   &-error {
+    @extend %hint-font-style;
+
     position: absolute;
     top: 100%;
     left: 0;

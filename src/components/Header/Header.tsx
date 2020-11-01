@@ -4,12 +4,19 @@ import { Link } from 'react-router-dom';
 import Logo from '@components/common/Logo/Logo';
 import './Header.scss';
 
+export interface HeaderProps {
+  openAuthModalHandler: Function;
+}
+
 /**
  * Main header.
  *
  * @returns {JSX} - header component.
  */
-const Header = (): JSX.Element => {
+const Header = (props: HeaderProps): JSX.Element => {
+  const { user, openAuthModalHandler } = props;
+  const isUserAuthorized = Boolean(user.id);
+
   return (
     <header className="header">
       <Container>
@@ -19,9 +26,16 @@ const Header = (): JSX.Element => {
           <nav className="nav">
             <ul className="nav-list">
               <li className="nav-list-item">
-                <a href="#" className="nav-link">
-                  Sign in
-                </a>
+                {
+                  isUserAuthorized ?
+                    <Link to="order-history" className="nav-link">
+                      Order history
+                    </Link>
+                    :
+                    <a href="#" className="nav-link" onClick={openAuthModalHandler}>
+                      Sign in
+                    </a>
+                }
               </li>
               <li className="nav-list-item">
                 <Link to="/checkout" className="nav-link">

@@ -11,3 +11,13 @@ body {
 a {
   color:  map-get($font-colors, base);
 }
+
+.link {
+  text-decoration: underline;
+
+  &:hover,
+  &:active {
+    color: map-get($font-colors, base);
+    text-decoration: none;
+  }
+}
