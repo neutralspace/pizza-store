@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
+import Container from 'react-bootstrap/Container';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import '@scss/style.scss';
 import Header from '@components/Header/Header';
 import Footer from '@components/Footer/Footer';
-import PizzasListContainer from '@containers/PizzasListContainer';
+import MainPage from '@pages/MainPage/MainPage';
+import CheckoutPage from '@pages/CheckoutPage/CheckoutPage';
 import { SessionType } from '@reducers/session-reducer';
 
 interface AppProps {
@@ -20,14 +23,16 @@ const App = (props: AppProps): JSX.Element => {
   }, []);
 
   return (
-    <>
+    <Router>
       <Header />
       <main>
-        Pizzas!
-        <PizzasListContainer />
+        <Container>
+          <Route exact path="/" component={MainPage} />
+          <Route path="/checkout" component={CheckoutPage} />
+        </Container>
       </main>
       <Footer />
-    </>
+    </Router>
   );
 }
 

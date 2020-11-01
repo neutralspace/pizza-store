@@ -4,6 +4,10 @@ html {
   color: map-get($font-colors, base);
 }
 
+body {
+  padding-bottom: $footer-height;
+}
+
 a {
   color:  map-get($font-colors, base);
 }

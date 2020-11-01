@@ -1,57 +1,58 @@
 import React, { memo } from 'react';
+import Button from '@components/common/Button/Button';
+import { PriceType } from '@reducers/session-reducer';
 import './Pizza.scss';
+import Input from '../../common/Input/Input';
+import { AbstractPizzaProps } from '@components/abstract/AbstractPizza/AbstractPizza';
+import AbstractPizza from '../../abstract/AbstractPizza/AbstractPizza';
 
-interface PizzaProps {
-  id: number;
-  name: string;
-  img: string,
+interface PizzaProps extends AbstractPizzaProps {
   ingredients: string;
-  price: number;
-  totalPrice?: number;
   isInCart: boolean;
-  cartQty?: number;
-  updateCartHandler: Function;
+  qty?: number;
 }
 
 /**
- * Single pizza item.
+ * Class for single pizza item.
  *
  * @returns {JSX} - pizza component.
  */
-const Pizza = (props: PizzaProps): JSX.Element => {
-  const {
-    id,
-    name,
-    isInCart,
-    cartQty,
-    updateCartHandler,
-  } = props;
+class Pizza<P extends AbstractPizzaProps> extends AbstractPizza<P> {
+  render(): JSX.Element {
+    const {
+      name,
+      price,
+      isInCart,
+      cartQty,
+    } = this.props;
 
-  const handleQtyChange = (e: React.SyntheticEvent<HTMLInputElement>): void => {
-    const newQty = Number(e.currentTarget?.value);
-    updateCartHandler(id, newQty);
+    return (
+      <article className="pizza">
+        <p className="pizza-title">
+          { name }
+        </p>
+        <div className="pizza-img-wrapper">
+          <img className="pizza-img" src="assets/img/pizza1.jpg" alt={name} />
+        </div>
+        <p className="pizza-price">
+          { price[0] } €
+        </p>
+        {
+          isInCart ?
+            <Input className="pizza-qty-input"
+                   name="qty"
+                   type="number"
+                   min="0"
+                   defaultValue={cartQty}
+                   onChange={this.handleQtyChange} />
+            :
+            <Button className="pizza-button" onClick={this.handleAddToCart}>
+              Add
+            </Button>
+        }
+      </article>
+    );
   }
-
-  const handleAddToCart = (): void => {
-    updateCartHandler(id, 1);
-  }
-
-  return (
-    <article>
-      { name }
-      {
-        isInCart ?
-          <input type="number"
-                 min="0"
-                 defaultValue={cartQty}
-                 onChange={handleQtyChange} />
-          :
-          <button onClick={handleAddToCart}>
-            Add
-          </button>
-      }
-    </article>
-  );
 }
 
-export default memo(Pizza);
+export default Pizza;

@@ -338,6 +338,7 @@ module.exports = function (webpackEnv) {
         '@actions': path.resolve(__dirname, '../src/actions/'),
         '@reducers': path.resolve(__dirname, '../src/reducers/'),
         '@containers': path.resolve(__dirname, '../src/containers/'),
+        '@helpers': path.resolve(__dirname, '../src/helpers/'),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

@@ -1,0 +1,18 @@
+@import '../../../assets/scss/base/variables';
+@import '../../../assets/scss/base/placeholders';
+
+.button {
+  @extend %accent-font-style-md;
+
+  height: $base-control-height;
+  padding: map-get($offsets, sm) map-get($offsets, md);
+  color: map-get($font-colors, accent-dark-inverse);
+  text-align: center;
+  background: map-get($colors, accent-dark);
+  border: none;
+
+  &:hover,
+  &:active {
+    background: map-get($colors, accent-bright);
+  }
+}
