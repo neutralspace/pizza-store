@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
-import PizzasListContainer from '../../containers/PizzasListContainer';
+import PizzasListContainer from '@containers/PizzasListContainer';
+import Title, { TITLE_SIZES } from '@components/common/Title/Title';
 
 /**
  * Main page.
@@ -9,7 +10,9 @@ import PizzasListContainer from '../../containers/PizzasListContainer';
 const MainPage = (): JSX.Element => {
   return (
     <section>
-      <h1>Choose one of our cool pizzas</h1>
+      <Title tag="h1" size={TITLE_SIZES.LG}>
+        Choose one of our cool pizzas
+      </Title>
       <PizzasListContainer />
     </section>
   );

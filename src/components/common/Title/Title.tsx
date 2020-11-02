@@ -1,25 +1,29 @@
 import React, { memo } from 'react';
-import { CURRENCY_TYPES } from '@reducers/session-reducer';
-import './CurrencySign.scss';
+import './Title.scss';
 
-const CURRENCY_CONTENT_BY_TYPE = {
-  [CURRENCY_TYPES.EURO]: '€',
-  [CURRENCY_TYPES.DOLLAR]: '$',
+export enum TITLE_SIZES {
+  SM = 'sm',
+  MD = 'md',
+  LG = 'lg',
 }
+
+export interface TitleProps {
+  size?: TITLE_SIZES;
+  tag?: string;
+  className?: string;
+}
+
 
 /**
- * Currency sign.
+ * Title.
  *
- * @returns {JSX} - Currency sign component.
+ * @returns {JSX} - Title component.
  */
-const CurrencySign = (props: { type: CURRENCY_TYPES }): JSX.Element => {
-  const {type } = props;
+const Title = (props: TitleProps): JSX.Element => {
+  const { tag = 'p', size = 'md', className: classNameFromProps, children } = props;
+  const className = `${classNameFromProps ? `${classNameFromProps} `: ''}title title-${size}`;
 
-  return (
-    <span>
-      {CURRENCY_CONTENT_BY_TYPE[type]}
-    </span>
-  );
+  return React.createElement(tag, { className }, children);
 }
 
-export default memo(CurrencySign);
+export default memo(Title);

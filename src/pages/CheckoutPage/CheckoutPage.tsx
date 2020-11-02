@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import OrderContainer from '@containers/OrderContainer';
 import CheckoutFormContainer from '@containers/CheckoutFormContainer';
+import Title, { TITLE_SIZES } from '@components/common/Title/Title';
 
 /**
  * Checkout page.
@@ -10,7 +11,9 @@ import CheckoutFormContainer from '@containers/CheckoutFormContainer';
 const CheckoutPage = (): JSX.Element => {
   return (
     <section>
-      <h1>Your order</h1>
+      <Title tag="h1" size={TITLE_SIZES.LG}>
+        Your order
+      </Title>
       <CheckoutFormContainer />
       <OrderContainer />
     </section>

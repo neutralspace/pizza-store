@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import OrdersHistoryContainer from '@containers/OrdersHistoryContainer';
+import Title, { TITLE_SIZES } from '@components/common/Title/Title';
 
 /**
  * Main page.
@@ -9,7 +10,9 @@ import OrdersHistoryContainer from '@containers/OrdersHistoryContainer';
 const OrdersHistoryPage = (): JSX.Element => {
   return (
     <section>
-      <h1>Order history</h1>
+      <Title tag="h1" size={TITLE_SIZES.LG}>
+        Order history
+      </Title>
       <OrdersHistoryContainer />
     </section>
   );
