@@ -9,7 +9,7 @@ import './Logo.scss';
  */
 const Logo = (): JSX.Element => {
   return (
-    <Link to="/pizza-store" className="logo">
+    <Link to="/pizza-store/" className="logo">
       Cool Pizzas store
     </Link>
   );
