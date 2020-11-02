@@ -53,8 +53,6 @@ abstract class AbstractPizzasList<P extends AbstractPizzasListProps> extends Rea
       totalPrice,
     };
 
-    console.log('--- ', totalPrice);
-
     dispatchUpdateCart(newCart);
   }
 

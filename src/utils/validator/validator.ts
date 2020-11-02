@@ -30,7 +30,7 @@ export default class Validator {
     if (!surnameValidation.maxLength(value)) {
       return `Surname must contain ${SURNAME_RESTRICTIONS.MAX_SYMBOLS_COUNT} maximum symbols amount`;
     }
-    if (!surnameValidation.regExp(value)) {
+    if (!(surnameValidation.regExp(value))) {
       return 'Please enter a valid surname with alphabet symbols only';
     }
     return '';

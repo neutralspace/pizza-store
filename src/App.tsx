@@ -53,7 +53,7 @@ const App = (props: AppProps): JSX.Element => {
       </main>
       <Footer />
 
-      <AuthRegModal isModalOpen={isModalOpen}
+      <AuthRegModal isModalOpen={isModalOpen && !user?.id}
                     onHideHandler={closeModal}/>
     </Router>
   );

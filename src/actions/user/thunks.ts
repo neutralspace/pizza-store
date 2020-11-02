@@ -38,7 +38,7 @@ export const registerUser = (email: string, password: string, name: string, surn
       if (!isExists) {
         databaseHandler.setUserData(email, password, name, surname).then((data: string) => {
           CookieHandler.setUserId(data);
-          dispatch(getUserDataAction({email, password, name, surname}));
+          dispatch(getUserDataAction({id: data, email, password, name, surname}));
         }).catch((error) => {
           console.log('Error: ', error);
         });

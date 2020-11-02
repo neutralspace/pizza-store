@@ -45,7 +45,6 @@ export const apiConfig = {
       if (!response) return null;
 
       const responseData = response.val();
-      console.log(responseData);
       if (!Boolean(responseData?.password)
           || String(responseData?.password) !== String(password)) return null;
       return responseData;

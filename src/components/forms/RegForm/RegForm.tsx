@@ -49,9 +49,10 @@ class RegForm extends AbstractForm<AbstractFormProps> {
   sendForm(): void {
     const { registerUser } = this.props;
     const { fields: { email, password, name, surname } } = this.state;
+    const emailValue = email.value?.toLowerCase();
 
     registerUser(
-      email.value,
+      emailValue,
       password.value,
       name.value,
       surname.value,
