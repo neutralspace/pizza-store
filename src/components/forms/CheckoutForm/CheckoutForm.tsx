@@ -11,6 +11,8 @@ import Title, { TITLE_SIZES } from '@components/common/Title/Title';
  * @returns {JSX} - form component.
  */
 class CheckoutForm extends AbstractForm<AbstractFormProps> {
+  private isUserDataApplied: boolean = false;
+
   constructor(props: AbstractFormProps) {
     super(props);
 
@@ -49,6 +51,46 @@ class CheckoutForm extends AbstractForm<AbstractFormProps> {
 
     if (userId) {
       addToOrderHistory(userId, cart);
+    }
+  }
+
+  applyUserData(): void {
+    const { user } = this.props;
+    const userId = user?.id;
+
+    if (userId) {
+      const { name, surname, email } = this.state.fields;
+
+      this.isUserDataApplied = true;
+      this.setState({
+        fields: {
+          ...this.state.fields,
+          name: {
+            ...name,
+            value: name.value || user.name,
+          },
+          surname: {
+            ...surname,
+            value: surname.value || user.surname,
+          },
+          email: {
+            ...email,
+            value: email.value || user.email,
+          }
+        }
+      });
+    }
+  }
+
+  componentDidUpdate(): void {
+    if (!this.isUserDataApplied) {
+      this.applyUserData();
+    }
+  }
+
+  componentDidMount(): void {
+    if (!this.isUserDataApplied) {
+      this.applyUserData();
     }
   }
 
