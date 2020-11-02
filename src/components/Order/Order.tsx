@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import { CartType, CURRENCY_TYPES } from '@reducers/session-reducer';
 import PizzasOrderList from '../PizzasOrderList/PizzasOrderList';
 import Totals from './Totals/Totals';
+import './Order.scss';
 
 interface OrderProps {
   cart: CartType;
@@ -29,7 +30,7 @@ const Order = (props: OrderProps): JSX.Element => {
 
   return (
     <>
-      <Row>
+      <Row className="order">
         <Col sm={8} xs={12}>
           <PizzasOrderList cart={cart}
                            pizzas={cart.items}
@@ -38,7 +39,7 @@ const Order = (props: OrderProps): JSX.Element => {
                            updateCart={updateCart} />
         </Col>
         <Col sm={4} xs={12}>
-          <Totals cart={cart} />
+          <Totals cart={cart} chosenCurrency={chosenCurrency} />
         </Col>
       </Row>
     </>

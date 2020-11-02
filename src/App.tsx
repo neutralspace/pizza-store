@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Container from 'react-bootstrap/Container';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import '@scss/style.scss';
 import Header from '@components/Header/Header';
 import Footer from '@components/Footer/Footer';
 import MainPage from '@pages/MainPage/MainPage';
@@ -9,6 +8,7 @@ import CheckoutPage from '@pages/CheckoutPage/CheckoutPage';
 import { SessionType } from '@reducers/session-reducer';
 import AuthRegModal from './components/AuthRegModal/AuthRegModal';
 import OrdersHistoryPage from '@pages/OrderHistoryPage/OrdersHistoryPage';
+import '@scss/style.scss';
 
 interface AppProps {
   session: SessionType;
@@ -19,7 +19,6 @@ interface AppProps {
 const App = (props: AppProps): JSX.Element => {
   const { session, user, getSessionData, changeCurrency, getUserData }= props;
   const [ isModalOpen, setIsModalOpen ] = useState(false);
-  console.log(user);
 
   useEffect(() => {
     if (getSessionData) {

@@ -2,7 +2,37 @@
 @import '../../../assets/scss/base/placeholders';
 
 .ordered-pizza {
+  height: auto;
+  padding: 0 0 map-get($offsets, md) 0;
   align-items: flex-start;
+  border: none;
+  border-bottom: map-get($border-sizes, xs) dashed map-get($colors, accent-dark);
+
+  .pizza {
+    &-title {
+      @extend %list-item-title-font-style-sm;
+
+      height: auto;
+    }
+
+    &-img-wrapper {
+      width: 60px;
+    }
+
+    &-qty-input {
+      width: 80px;
+    }
+
+    &-details {
+      align-items: center;
+    }
+
+    &-price {
+      margin-left: auto;
+      margin-right: map-get($offsets, lg);
+      margin-bottom: 0;
+    }
+  }
 }
 
 .pizza-details {

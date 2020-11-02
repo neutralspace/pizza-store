@@ -1,8 +1,12 @@
 import React, { memo } from 'react';
 import { CartType } from '@reducers/session-reducer';
+import Title, { TITLE_SIZES } from '@components/common/Title/Title';
+import { CURRENCY_TYPES } from '@reducers/session-reducer';
+import './Totals.scss';
 
 interface TotalsProps {
   cart: CartType;
+  chosenCurrency: CURRENCY_TYPES;
 }
 
 /**
@@ -12,17 +16,18 @@ interface TotalsProps {
  */
 const Totals = (props: TotalsProps): JSX.Element => {
   const {
-    cart
+    cart,
+    chosenCurrency,
   } = props;
 
   return (
     <>
-      <p>Total:</p>
-      <p>
+      <Title size={TITLE_SIZES.SM}>Total:</Title>
+      <p className="totals-text">
         Items in cart: {cart.totalQty}
       </p>
-      <p>
-        Price: {cart.totalPrice[0]}
+      <p className="totals-text">
+        Price: {cart.totalPrice[chosenCurrency]}
       </p>
     </>
   );

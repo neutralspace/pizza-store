@@ -1,11 +1,14 @@
 import React, { memo } from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { CartType } from '@reducers/session-reducer';
+import { CartType, CURRENCY_TYPES } from '@reducers/session-reducer';
+import Title, { TITLE_SIZES } from '@components/common/Title/Title';
 import Order from '../Order/Order';
+import './OrdersHistory.scss';
 
 interface OrderProps {
   cart: CartType;
+  chosenCurrency: CURRENCY_TYPES;
 }
 
 /**
@@ -14,7 +17,7 @@ interface OrderProps {
  * @returns {JSX} - order history component.
  */
 const OrdersHistory = (props: OrderProps): JSX.Element => {
-  const { orders } = props;
+  const { orders, chosenCurrency } = props;
 
   if (!orders) return null;
 
@@ -31,14 +34,16 @@ const OrdersHistory = (props: OrderProps): JSX.Element => {
       {
         ordersIds.map((key) => {
           return (
-            <React.Fragment key={key}>
+            <article key={key} className="order-list-item">
               <Row>
                 <Col xs={12}>
-                  { createDate(key) }
+                  <Title size={TITLE_SIZES.SM} className="order-date">
+                    { createDate(key) }
+                  </Title>
                 </Col>
               </Row>
-              <Order cart={orders[key]} noCartAction={true} />
-            </React.Fragment>
+              <Order cart={orders[key]} chosenCurrency={chosenCurrency} noCartAction={true} />
+            </article>
           );
         })
       }

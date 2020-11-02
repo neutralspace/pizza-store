@@ -21,7 +21,6 @@ class OrderedPizza extends AbstractPizza<AbstractPizzaProps> {
       chosenCurrency,
       noCartAction,
     } = this.props;
-    console.log(chosenCurrency);
 
     return (
       <article className="pizza ordered-pizza">
@@ -37,20 +36,26 @@ class OrderedPizza extends AbstractPizza<AbstractPizzaProps> {
           </p>
           {
             !noCartAction
-            &&
-            (
-              isInCart ?
-              <Input className="pizza-qty-input"
-                     name="qty"
-                     type="number"
-                     min="0"
-                     defaultValue={cartQty}
-                     onChange={this.handleQtyChange}/>
+            ?
+              (
+                isInCart ?
+                <Input className="pizza-qty-input"
+                       name="qty"
+                       type="number"
+                       min="0"
+                       defaultValue={cartQty}
+                       onChange={this.handleQtyChange}/>
+                :
+                <Button className="pizza-button" onClick={this.handleAddToCart}>
+                  Add
+                </Button>
+              )
               :
-              <Button className="pizza-button" onClick={this.handleAddToCart}>
-                Add
-              </Button>
-            )
+              (
+                <p className="pizza-qty">
+                  Amount: { cartQty }
+                </p>
+              )
           }
         </div>
       </article>
