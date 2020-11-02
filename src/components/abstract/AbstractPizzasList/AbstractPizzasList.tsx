@@ -1,4 +1,5 @@
 import React from 'react';
+import debounce from'lodash/debounce';
 import { PizzasListType } from '@reducers/pizzas-reducer';
 import { CURRENCY_TYPES, PriceType, CartType } from '@reducers/session-reducer';
 import { createPriceObj } from '@helpers';
@@ -21,7 +22,7 @@ abstract class AbstractPizzasList<P extends AbstractPizzasListProps> extends Rea
   constructor(props: AbstractPizzasListProps) {
     super(props);
 
-    this.updateCart = this.updateCart.bind(this);
+    this.updateCart = debounce(this.updateCart.bind(this), 400);
   }
 
   updateCart(pizzaId: number, newQty: number): void {
