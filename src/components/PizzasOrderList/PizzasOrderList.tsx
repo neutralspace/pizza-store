@@ -10,9 +10,9 @@ interface PizzasOrderListProps extends AbstractPizzasListProps {}
  *
  * @returns {JSX} - pizzas list component.
  */
-class PizzasOrderList<P extends PizzasOrderListProps> extends AbstractPizzasList<P> {
+class PizzasOrderList extends AbstractPizzasList<PizzasOrderListProps> {
   render(): JSX.Element {
-    const { pizzas } = this.props;
+    const { pizzas, noCartAction } = this.props;
 
     if (!pizzas) return null;
 
@@ -31,7 +31,9 @@ class PizzasOrderList<P extends PizzasOrderListProps> extends AbstractPizzasList
             };
 
             return (
-                <OrderedPizza {...pizzaProps} updateCartHandler={this.updateCart} />
+                <OrderedPizza {...pizzaProps}
+                              noCartAction={noCartAction}
+                              updateCartHandler={this.updateCart} />
             )
           })
         }

@@ -8,6 +8,7 @@ import MainPage from '@pages/MainPage/MainPage';
 import CheckoutPage from '@pages/CheckoutPage/CheckoutPage';
 import { SessionType } from '@reducers/session-reducer';
 import AuthRegModal from './components/AuthRegModal/AuthRegModal';
+import OrdersHistoryPage from '@pages/OrderHistoryPage/OrdersHistoryPage';
 
 interface AppProps {
   session: SessionType;
@@ -43,6 +44,7 @@ const App = (props: AppProps): JSX.Element => {
         <Container>
           <Route exact path="/" component={MainPage} />
           <Route path="/checkout" component={CheckoutPage} />
+          <Route path="/order-history" component={OrdersHistoryPage} />
         </Container>
       </main>
       <Footer />

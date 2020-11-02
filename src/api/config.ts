@@ -66,4 +66,11 @@ export const apiConfig = {
       return response.val();
     }
   },
+  addToOrderHistory: {
+    url: '/users/{userId}/orders/{orderId}',
+    mapResponse: (response) => {
+      if (!response) return null;
+      return response.val();
+    }
+  },
 }

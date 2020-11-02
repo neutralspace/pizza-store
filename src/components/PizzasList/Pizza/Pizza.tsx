@@ -1,10 +1,9 @@
 import React, { memo } from 'react';
 import Button from '@components/common/Button/Button';
-import { PriceType } from '@reducers/session-reducer';
-import './Pizza.scss';
 import Input from '../../common/Input/Input';
 import { AbstractPizzaProps } from '@components/abstract/AbstractPizza/AbstractPizza';
-import AbstractPizza from '../../abstract/AbstractPizza/AbstractPizza';
+import AbstractPizza from '@components/abstract/AbstractPizza/AbstractPizza';
+import './Pizza.scss';
 
 interface PizzaProps extends AbstractPizzaProps {
   ingredients: string;
@@ -17,7 +16,7 @@ interface PizzaProps extends AbstractPizzaProps {
  *
  * @returns {JSX} - pizza component.
  */
-class Pizza<P extends AbstractPizzaProps> extends AbstractPizza<P> {
+class Pizza extends AbstractPizza<PizzaProps> {
   render(): JSX.Element {
     const {
       name,

@@ -1,28 +1,23 @@
 import React from 'react';
 import Button from '@components/common/Button/Button';
-import './OrderedPizza.scss';
 import Input from '@components/common/Input/Input';
-import {AbstractPizzaProps} from '@components/abstract/AbstractPizza/AbstractPizza';
+import { AbstractPizzaProps } from '@components/abstract/AbstractPizza/AbstractPizza';
 import AbstractPizza from '@components/abstract/AbstractPizza/AbstractPizza';
-
-interface PizzaProps extends AbstractPizzaProps {
-  ingredients: string;
-  isInCart: boolean;
-  qty?: number;
-}
+import './OrderedPizza.scss';
 
 /**
- * Class for single pizza item.
+ * Class for single pizza item in order.
  *
  * @returns {JSX} - pizza component.
  */
-class OrderedPizza<P extends AbstractPizzaProps> extends AbstractPizza<P> {
+class OrderedPizza extends AbstractPizza<AbstractPizzaProps> {
   render(): JSX.Element {
     const {
       name,
       price,
       isInCart,
       cartQty,
+      noCartAction,
     } = this.props;
 
     return (
@@ -38,7 +33,10 @@ class OrderedPizza<P extends AbstractPizzaProps> extends AbstractPizza<P> {
             {price[0]} €
           </p>
           {
-            isInCart ?
+            !noCartAction
+            &&
+            (
+              isInCart ?
               <Input className="pizza-qty-input"
                      name="qty"
                      type="number"
@@ -49,6 +47,7 @@ class OrderedPizza<P extends AbstractPizzaProps> extends AbstractPizza<P> {
               <Button className="pizza-button" onClick={this.handleAddToCart}>
                 Add
               </Button>
+            )
           }
         </div>
       </article>

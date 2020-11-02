@@ -9,7 +9,7 @@ import Validator from '@utils/validator/validator';
  *
  * @returns {JSX} - form component.
  */
-class RegForm<P extends AbstractFormProps> extends AbstractForm<P> {
+class RegForm extends AbstractForm<AbstractFormProps> {
   constructor(props: AbstractFormProps) {
     super(props);
 
@@ -49,7 +49,6 @@ class RegForm<P extends AbstractFormProps> extends AbstractForm<P> {
   sendForm(): void {
     const { registerUser } = this.props;
     const { fields: { email, password, name, surname } } = this.state;
-    console.log('Send Form');
 
     registerUser(
       email.value,
