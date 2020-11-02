@@ -17,4 +17,10 @@ Things for further implementing:
 - Add checkout form indication of success. Right now, if no validation errors occurs, it saves order to history if user is signed in;
 - Add loader to all pages stoping it from content blinks;
 - Add actions for errors handling;
-- Add ability to repeat orders from history.
+- Add ability to repeat orders from history;
+- Improve re-renders via reselect;
+- Consider moving async handling to redux-observable;
+- Add a close button to all modals. Definitely.
+
+Compatibility:
+Tested in Chrome v86+ Chrome v86+ Android, Microsoft Edge v85+, Firefox v82.
