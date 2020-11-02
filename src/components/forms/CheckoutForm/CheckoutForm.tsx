@@ -3,6 +3,7 @@ import Button from '@components/common/Button/Button';
 import Input from '@components/common/Input/Input';
 import AbstractForm, { AbstractFormProps } from '@components/abstract/AbstractForm/AbstractForm';
 import Validator from '@utils/validator/validator';
+import Title, { TITLE_SIZES } from '@components/common/Title/Title';
 
 /**
  * Class checkout form.
@@ -59,9 +60,9 @@ class CheckoutForm extends AbstractForm<AbstractFormProps> {
     const hasItemsInCart = Boolean(cart.items?.length);
 
     if (!hasItemsInCart) return (
-      <>
+      <Title size={TITLE_SIZES.MD}>
         No items in cart
-      </>
+      </Title>
     );
 
     return (

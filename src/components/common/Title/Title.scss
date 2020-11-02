@@ -1,0 +1,24 @@
+@import '../../../assets/scss/base/variables';
+@import '../../../assets/scss/base/placeholders';
+
+.title {
+  color: map-get($font-colors, base);
+
+  &-lg {
+    @extend %title-font-style-lg;
+
+    margin-bottom: map-get($offsets, lg);
+  }
+
+  &-md {
+    @extend %title-font-style-md;
+
+    margin-bottom: map-get($offsets, md);
+  }
+
+  &-sm {
+    @extend %title-font-style-sm;
+
+    margin-bottom: map-get($offsets, sm);
+  }
+}
