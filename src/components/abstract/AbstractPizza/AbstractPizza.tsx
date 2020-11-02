@@ -1,12 +1,14 @@
 import React from 'react';
 import { PriceType } from '@reducers/session-reducer';
+import { CURRENCY_TYPES } from '@reducers/session-reducer';
 import './AbstractPizza.scss';
 
 export interface AbstractPizzaProps {
   id: number;
   name: string;
-  img: string,
+  img: string;
   price: PriceType;
+  chosenCurrency: CURRENCY_TYPES;
   updateCartHandler: Function;
 }
 

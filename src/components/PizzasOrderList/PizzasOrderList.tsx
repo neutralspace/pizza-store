@@ -12,7 +12,7 @@ interface PizzasOrderListProps extends AbstractPizzasListProps {}
  */
 class PizzasOrderList extends AbstractPizzasList<PizzasOrderListProps> {
   render(): JSX.Element {
-    const { pizzas, noCartAction } = this.props;
+    const { pizzas, chosenCurrency, noCartAction } = this.props;
 
     if (!pizzas) return null;
 
@@ -32,6 +32,7 @@ class PizzasOrderList extends AbstractPizzasList<PizzasOrderListProps> {
 
             return (
                 <OrderedPizza {...pizzaProps}
+                              chosenCurrency={chosenCurrency}
                               noCartAction={noCartAction}
                               updateCartHandler={this.updateCart} />
             )

@@ -8,6 +8,7 @@ export interface AbstractPizzasListProps {
   pizzas: PizzasListType;
   cart?: CartType;
   noCartAction?: boolean;
+  chosenCurrency: CURRENCY_TYPES;
   updateCart?: Function;
 }
 

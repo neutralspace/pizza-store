@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
   return {
     pizzas: state.pizzas,
     cart: state.session.cart,
+    chosenCurrency: state.session.currency,
   }
 };
 

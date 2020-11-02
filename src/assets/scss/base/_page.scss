@@ -20,4 +20,9 @@ a {
     color: map-get($font-colors, base);
     text-decoration: none;
   }
+
+  &.disabled {
+    color: red;
+    text-decoration: none;
+  }
 }

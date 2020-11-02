@@ -2,8 +2,6 @@ import React, { memo } from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { CartType } from '@reducers/session-reducer';
-import PizzasOrderList from '../PizzasOrderList/PizzasOrderList';
-import Totals from './Totals/Totals';
 import Order from '../Order/Order';
 
 interface OrderProps {

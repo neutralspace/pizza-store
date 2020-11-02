@@ -13,10 +13,11 @@ import OrdersHistoryPage from '@pages/OrderHistoryPage/OrdersHistoryPage';
 interface AppProps {
   session: SessionType;
   getSessionData: Function;
+  changeCurrency: Function;
 }
 
 const App = (props: AppProps): JSX.Element => {
-  const { session, user, getSessionData, getUserData }= props;
+  const { session, user, getSessionData, changeCurrency, getUserData }= props;
   const [ isModalOpen, setIsModalOpen ] = useState(false);
   console.log(user);
 
@@ -39,7 +40,11 @@ const App = (props: AppProps): JSX.Element => {
 
   return (
     <Router>
-      <Header user={user} openAuthModalHandler={openModal} />
+      <Header user={user}
+              chosenCurrency={session.currency}
+              cartItemsQty={session.cart.totalQty}
+              changeCurrency={changeCurrency}
+              openAuthModalHandler={openModal} />
       <main>
         <Container>
           <Route exact path="/" component={MainPage} />

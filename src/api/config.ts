@@ -33,6 +33,9 @@ export const apiConfig = {
       return String(response.numChildren() + 1);
     }
   },
+  changeCurrency: {
+    url: '/sessions/{sessionId}/currency',
+  },
   updateCart: {
     url: '/sessions/{sessionId}/cart',
   },

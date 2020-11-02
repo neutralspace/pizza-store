@@ -1,12 +1,13 @@
 import React, { memo } from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { CartType } from '@reducers/session-reducer';
+import { CartType, CURRENCY_TYPES } from '@reducers/session-reducer';
 import PizzasOrderList from '../PizzasOrderList/PizzasOrderList';
 import Totals from './Totals/Totals';
 
 interface OrderProps {
   cart: CartType;
+  chosenCurrency: CURRENCY_TYPES;
   noCartAction?: boolean;
   updateCart?: Function;
 }
@@ -19,6 +20,7 @@ interface OrderProps {
 const Order = (props: OrderProps): JSX.Element => {
   const {
     cart,
+    chosenCurrency,
     noCartAction,
     updateCart,
   } = props;
@@ -31,6 +33,7 @@ const Order = (props: OrderProps): JSX.Element => {
         <Col sm={8} xs={12}>
           <PizzasOrderList cart={cart}
                            pizzas={cart.items}
+                           chosenCurrency={chosenCurrency}
                            noCartAction={noCartAction}
                            updateCart={updateCart} />
         </Col>
