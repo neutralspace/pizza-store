@@ -29,7 +29,9 @@ abstract class AbstractPizza<P extends AbstractPizzaProps> extends React.PureCom
     const { id, updateCartHandler } = this.props;
     const newQty = Number(e.currentTarget?.value);
 
-    updateCartHandler(id, newQty);
+    if (newQty >= 0) {
+      updateCartHandler(id, newQty);
+    }
   }
 
   handleAddToCart(): void {

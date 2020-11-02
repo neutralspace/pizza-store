@@ -56,8 +56,13 @@ class CheckoutForm extends AbstractForm<AbstractFormProps> {
     const { fields } = this.state;
     const fieldsKeys = Object.keys(fields);
     const isUserAuthorized = user?.id;
+    const hasItemsInCart = Boolean(cart.items?.length);
 
-    console.log('User: ', user);
+    if (!hasItemsInCart) return (
+      <>
+        No items in cart
+      </>
+    );
 
     return (
       <form className="form" onSubmit={this.handleSubmit}>
