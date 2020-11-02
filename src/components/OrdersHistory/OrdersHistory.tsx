@@ -25,8 +25,10 @@ const OrdersHistory = (props: OrderProps): JSX.Element => {
 
   const createDate = (timestamp: string | number): string => {
     const date = new Date(Number(timestamp));
+    let day = date.getDate();
+    day = String(day).length > 1 ? day : `0${day}`;
 
-    return `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`;
+    return `${day}.${date.getMonth() + 1}.${date.getFullYear()}`;
   }
 
   return (
