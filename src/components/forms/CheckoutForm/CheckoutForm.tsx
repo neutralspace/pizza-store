@@ -5,76 +5,81 @@ import AbstractForm, { AbstractFormProps } from '@components/abstract/AbstractFo
 import Validator from '@utils/validator/validator';
 
 /**
- * Class authorization form.
+ * Class checkout form.
  *
  * @returns {JSX} - form component.
  */
-class AuthForm extends AbstractForm<AbstractFormProps> {
+class CheckoutForm extends AbstractForm<AbstractFormProps> {
   constructor(props: AbstractFormProps) {
     super(props);
 
     this.state = {
       fields: {
-        email: {
-          label: 'E-mail:',
-          value: '',
+        name: {
+          label: 'Name:',
           errorText: '',
         },
-        password: {
-          label: 'Password:',
-          value: '',
-          type: 'password',
+        surname: {
+          label: 'Surname:',
           errorText: '',
-        }
+        },
+        address: {
+          label: 'Address:',
+          type: 'text',
+          errorText: '',
+        },
+        email: {
+          label: 'E-mail:',
+          errorText: '',
+        },
       }
     };
     this.fieldsValidationRules = {
+      name: Validator.getNameError,
+      surname: Validator.getSurnameError,
       email: Validator.getEmailError,
-      password: Validator.getAuthPasswordError,
+      address: Validator.getAddressError,
     }
-
-    this.sendForm = this.sendForm.bind(this);
   }
 
   sendForm(): void {
-    const { authorizeUser } = this.props;
-    const { fields: { email, password } } = this.state;
+    const { user, cart, addToOrderHistory } = this.props;
+    const userId = user?.id;
 
-    authorizeUser(email.value, password.value);
+    if (userId) {
+      addToOrderHistory(userId, cart);
+    }
   }
 
   render(): JSX.Element {
-    const { formState } = this.props;
+    const { user, cart } = this.props;
     const { fields } = this.state;
     const fieldsKeys = Object.keys(fields);
+    const isUserAuthorized = user?.id;
+
+    console.log('User: ', user);
 
     return (
       <form className="form" onSubmit={this.handleSubmit}>
         {
           fieldsKeys.map((key) => {
             const fieldProps = fields[key];
+            const defaultValue = isUserAuthorized ? user[key] : '';
 
             return (
               <Input name={key}
                      key={key}
                      { ...fieldProps}
+                     defaultValue={defaultValue}
                      onChange={this.handleValueChange} />
             )
           })
         }
 
-        {
-          Boolean(formState?.error)
-          &&
-          <p className="form-error">
-            {formState.error}
-          </p>
-        }
-
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Checkout</Button>
       </form>
     );
   }
 }
 
-export default AuthForm;
+export default CheckoutForm;

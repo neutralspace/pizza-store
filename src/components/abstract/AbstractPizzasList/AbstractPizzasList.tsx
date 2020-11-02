@@ -7,7 +7,8 @@ import './AbstractPizzasList.scss';
 export interface AbstractPizzasListProps {
   pizzas: PizzasListType;
   cart?: CartType;
-  updateCart: Function;
+  noCartAction?: boolean;
+  updateCart?: Function;
 }
 
 /**

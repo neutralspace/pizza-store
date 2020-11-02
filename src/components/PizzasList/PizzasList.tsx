@@ -14,7 +14,7 @@ interface PizzasListProps extends AbstractPizzasListProps {
  *
  * @returns {JSX} - pizzas list component.
  */
-class PizzasList<P extends PizzasListProps> extends AbstractPizzasList<P> {
+class PizzasList extends AbstractPizzasList<PizzasListProps> {
   componentDidMount() {
     const { getPizzasList } = this.props;
 

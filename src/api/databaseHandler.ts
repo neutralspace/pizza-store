@@ -168,4 +168,23 @@ export default class DatabaseHandler {
       });
     })
   }
+
+  addToOrderHistory(userId: string, order: CartType): Promise<UserDataType> {
+    const {url: urlTemplate } = apiConfig.addToOrderHistory;
+    const orderId = String(Date.now());
+    const url = urlTemplate.replace('{userId}', userId)
+                           .replace('{orderId}', orderId);
+
+    console.log(url, order);
+
+    return new Promise((resolve, reject) => {
+      this.database.ref(`${url}`).set(order, (error) => {
+        if (error) {
+          reject(error);
+        }
+
+        resolve();
+      });
+    });
+  }
 }

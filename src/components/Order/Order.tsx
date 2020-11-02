@@ -7,6 +7,8 @@ import Totals from './Totals/Totals';
 
 interface OrderProps {
   cart: CartType;
+  noCartAction?: boolean;
+  updateCart?: Function;
 }
 
 /**
@@ -17,6 +19,7 @@ interface OrderProps {
 const Order = (props: OrderProps): JSX.Element => {
   const {
     cart,
+    noCartAction,
     updateCart,
   } = props;
 
@@ -28,6 +31,7 @@ const Order = (props: OrderProps): JSX.Element => {
         <Col sm={8} xs={12}>
           <PizzasOrderList cart={cart}
                            pizzas={cart.items}
+                           noCartAction={noCartAction}
                            updateCart={updateCart} />
         </Col>
         <Col sm={4} xs={12}>

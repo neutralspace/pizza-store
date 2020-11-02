@@ -7,6 +7,7 @@ import {
 } from './action-creators';
 import {UserDataType} from '@reducers/user-reducer';
 import CookieHandler from '@utils/cookie/cookieHandler';
+import {CartType} from '../../reducers/session-reducer';
 
 export const authorizeUser = (email: string, password: string): Function => {
   return (dispatch) => {
@@ -66,4 +67,23 @@ export const getUserData = (): Function => {
       });
     }
   }
+};
+
+export const addToOrderHistory = (userId: string, order: CartType): Function => {
+  return (dispatch) => {
+    const databaseHandler = DatabaseHandler.GET_INSTANCE();
+    const userId = CookieHandler.getUserId();
+
+    databaseHandler.addToOrderHistory(userId, order).then(() => {
+      databaseHandler.getUserData(userId).then((data: UserDataType) => {
+        if (data?.id) {
+          dispatch(getUserDataAction(data));
+        }
+      }).catch((error) => {
+        console.log('Error: ', error);
+      });
+    }).catch((error) => {
+      console.log('Error: ', error);
+    });
+  };
 };
