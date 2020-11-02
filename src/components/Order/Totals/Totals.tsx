@@ -3,6 +3,7 @@ import { CartType } from '@reducers/session-reducer';
 import Title, { TITLE_SIZES } from '@components/common/Title/Title';
 import { CURRENCY_TYPES } from '@reducers/session-reducer';
 import './Totals.scss';
+import CurrencySign from '../../common/CurrencySign/CurrencySign';
 
 interface TotalsProps {
   cart: CartType;
@@ -27,7 +28,7 @@ const Totals = (props: TotalsProps): JSX.Element => {
         Items in cart: {cart.totalQty}
       </p>
       <p className="totals-text">
-        Price: {cart.totalPrice[chosenCurrency]}
+         Price: {cart.totalPrice[chosenCurrency]} <CurrencySign type={chosenCurrency} />
       </p>
     </>
   );

@@ -17,12 +17,13 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     line-clamp: 2;
+    text-align: center;
     margin-bottom: map-get($offsets, md);
     overflow: hidden;
   }
 
   &-img-wrapper {
-    width: 100px;
+    width: 120px;
     margin-bottom: auto;
     overflow: hidden;
   }

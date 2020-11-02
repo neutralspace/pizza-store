@@ -22,6 +22,7 @@ class Pizza extends AbstractPizza<PizzaProps> {
     const {
       name,
       price,
+      img,
       isInCart,
       cartQty,
       chosenCurrency,
@@ -33,7 +34,7 @@ class Pizza extends AbstractPizza<PizzaProps> {
           { name }
         </p>
         <div className="pizza-img-wrapper">
-          <img className="pizza-img" src="assets/img/pizza1.jpg" alt={name} />
+          <img className="pizza-img" src={img} alt={name} />
         </div>
         <p className="pizza-price">
           { price[chosenCurrency] } <CurrencySign type={chosenCurrency} />
