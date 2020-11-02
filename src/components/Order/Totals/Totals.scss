@@ -1,8 +1,18 @@
 @import '../../../assets/scss/base/variables';
-@import '../../../assets/scss/base/placeholders';
 
 .totals-text {
   margin-bottom: map-get($offsets, md);
   font-size: 16px;
+  font-weight: 800;
+
+  &-overall {
+    padding-top: map-get($offsets, sm);
+    border-top: map-get($border-sizes, xs) solid map-get($colors, accent-dark);
+  }
+}
+
+.totals-hint-text {
+  margin-bottom: map-get($offsets, md);
+  font-size: 14px;
   font-weight: 800;
 }

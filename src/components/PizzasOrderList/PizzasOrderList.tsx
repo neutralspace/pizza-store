@@ -32,6 +32,7 @@ class PizzasOrderList extends AbstractPizzasList<PizzasOrderListProps> {
 
             return (
                 <OrderedPizza {...pizzaProps}
+                              key={pizzaId}
                               chosenCurrency={chosenCurrency}
                               noCartAction={noCartAction}
                               updateCartHandler={this.updateCart} />

@@ -62,4 +62,11 @@ export default class Validator {
     }
     return '';
   }
+
+  static getAddressError(value: string): string {
+    if (!value || value.length === 0) {
+      return `Address is required`;
+    }
+    return '';
+  }
 }
