@@ -13,11 +13,4 @@
     color: map-get($colors, accent-dark);
     text-decoration: none;
   }
-
-
-  .disabled {
-    color: red;
-    text-decoration: none;
-    pointer-events: none;
-  }
 }

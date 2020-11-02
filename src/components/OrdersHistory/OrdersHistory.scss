@@ -2,5 +2,7 @@
 @import '../../assets/scss/base/placeholders';
 
 .order {
-  margin: map-get($offsets, md) 0 map-get($offsets, lg) * 2 0;
+  &-date {
+    margin-bottom: map-get($offsets, md);
+  }
 }

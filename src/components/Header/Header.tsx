@@ -4,9 +4,14 @@ import { Link } from 'react-router-dom';
 import Logo from '@components/common/Logo/Logo';
 import CurrencySign from '@components/common/CurrencySign/CurrencySign';
 import { CURRENCY_TYPES } from '@reducers/session-reducer';
+import { UserDataType } from '@reducers/user-reducer';
 import './Header.scss';
 
 export interface HeaderProps {
+  user: UserDataType;
+  cartItemsQty: number;
+  chosenCurrency: CURRENCY_TYPES;
+  changeCurrency: Function;
   openAuthModalHandler: Function;
 }
 
@@ -18,6 +23,7 @@ export interface HeaderProps {
 const Header = (props: HeaderProps): JSX.Element => {
   const { user,
           chosenCurrency,
+          cartItemsQty,
           openAuthModalHandler,
           changeCurrency } = props;
   const isUserAuthorized = Boolean(user.id);
@@ -71,8 +77,15 @@ const Header = (props: HeaderProps): JSX.Element => {
                 }
               </li>
               <li className="nav-list-item">
-                <Link to="/checkout" className="nav-link">
+                <Link to="/checkout" className="nav-link cart-link">
                   Cart
+                  {
+                    cartItemsQty > 0
+                    &&
+                    <span className="cart-qty">
+                      { cartItemsQty }
+                    </span>
+                  }
                 </Link>
               </li>
             </ul>

@@ -38,6 +38,12 @@
     margin-bottom: map-get($offsets, sm);
   }
 
+  &-qty {
+    @extend %accent-font-style-md;
+
+    text-transform: none;
+  }
+
   .button {
     width: 100%;
   }
