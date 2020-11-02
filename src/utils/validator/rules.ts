@@ -2,7 +2,8 @@ import {
   EMAIL_RESTRICTIONS,
   NAME_RESTRICTIONS,
   PASSWORD_RESTRICTIONS,
-  SURNAME_RESTRICTIONS } from "./constants";
+  SURNAME_RESTRICTIONS
+} from './constants';
 
 export const nameValidation = {
   minLength: value => value?.length >= NAME_RESTRICTIONS.MIN_SYMBOLS_COUNT,

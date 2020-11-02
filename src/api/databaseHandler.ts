@@ -171,6 +171,8 @@ export default class DatabaseHandler {
         if (error) {
           reject(error);
         }
+
+        resolve(userId);
       });
     });
   }
@@ -194,8 +196,6 @@ export default class DatabaseHandler {
     const orderId = String(Date.now());
     const url = urlTemplate.replace('{userId}', userId)
                            .replace('{orderId}', orderId);
-
-    console.log(url, order);
 
     return new Promise((resolve, reject) => {
       this.database.ref(`${url}`).set(order, (error) => {

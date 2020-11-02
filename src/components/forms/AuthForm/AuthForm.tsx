@@ -39,8 +39,9 @@ class AuthForm extends AbstractForm<AbstractFormProps> {
   sendForm(): void {
     const { authorizeUser } = this.props;
     const { fields: { email, password } } = this.state;
+    const emailValue = email.value?.toLowerCase();
 
-    authorizeUser(email.value, password.value);
+    authorizeUser(emailValue, password.value);
   }
 
   render(): JSX.Element {
