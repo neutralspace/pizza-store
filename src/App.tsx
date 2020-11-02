@@ -46,9 +46,9 @@ const App = (props: AppProps): JSX.Element => {
               openAuthModalHandler={openModal} />
       <main>
         <Container>
-          <Route exact path="/" component={MainPage} />
-          <Route path="/checkout" component={CheckoutPage} />
-          <Route path="/order-history" component={OrdersHistoryPage} />
+          <Route exact path="/pizza-store" component={MainPage} />
+          <Route path="/pizza-store/checkout" component={CheckoutPage} />
+          <Route path="/pizza-store/order-history" component={OrdersHistoryPage} />
         </Container>
       </main>
       <Footer />

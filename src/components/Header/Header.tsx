@@ -67,7 +67,7 @@ const Header = (props: HeaderProps): JSX.Element => {
               <li className="nav-list-item">
                 {
                   isUserAuthorized ?
-                    <Link to="order-history" className="nav-link">
+                    <Link to="/pizza-store/order-history" className="nav-link">
                       Order history
                     </Link>
                     :
@@ -77,7 +77,7 @@ const Header = (props: HeaderProps): JSX.Element => {
                 }
               </li>
               <li className="nav-list-item">
-                <Link to="/checkout" className="nav-link cart-link">
+                <Link to="/pizza-store/checkout" className="nav-link cart-link">
                   Cart
                   {
                     cartItemsQty > 0
