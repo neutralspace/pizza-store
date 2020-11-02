@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { getSessionData } from '@actions/session';
 import { getUserData } from '@actions/user';
+import { changeCurrency } from '@actions/session';
 import App from '../App';
 
 const mapStateToProps = (state) => {
@@ -15,5 +16,6 @@ export default connect(
   {
     getSessionData,
     getUserData,
+    changeCurrency,
   }
   )(App);

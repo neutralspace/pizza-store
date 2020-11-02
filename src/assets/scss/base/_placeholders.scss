@@ -16,7 +16,14 @@
 
 %accent-font-style-md {
   font-size: 16px;
-  line-height: 16px;
+  line-height: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+%accent-font-style-lg {
+  font-size: 18px;
+  line-height: 20px;
   font-weight: 800;
   text-transform: uppercase;
 }

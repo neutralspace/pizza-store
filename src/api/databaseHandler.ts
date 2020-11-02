@@ -3,6 +3,7 @@ import { apiConfig, firebaseConfig } from './config';
 import { PizzasListType } from '@reducers/pizzas-reducer';
 import { CartType, SessionType, defaultSessionState } from '@reducers/session-reducer';
 import { UserDataType} from '@reducers/user-reducer';
+import {CURRENCY_TYPES} from '../reducers/session-reducer';
 
 /**
  * Singleton class for handling all database interactions.
@@ -44,6 +45,25 @@ export default class DatabaseHandler {
         reject(error);
       });
     })
+  }
+
+  changeCurrency(sessionId?: string, newCurrency?: CURRENCY_TYPES): Promise<SessionType> {
+    const { url: urlTemplate } = apiConfig.changeCurrency;
+    const url = urlTemplate.replace('{sessionId}', sessionId);
+
+    return new Promise((resolve, reject) => {
+      this.database.ref(url).set(newCurrency, (error) => {
+        if (error) {
+          reject(error);
+        }
+
+        this.getSessionData(sessionId).then((data) => {
+          resolve(data);
+        }).catch((error) => {
+          reject(error);
+        })
+      });
+    });
   }
 
   createSession(): Promise<SessionType> {

@@ -1,20 +1,16 @@
 import React, { memo } from 'react';
-import { PriceType } from '@reducers/session-reducer';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import PizzasOrderListContainer from '../../containers/PizzasOrderListContainer';
+import { CartType } from '@reducers/session-reducer';
 
-interface PizzaProps {
-  totalQty;
-  totalPrice;
+interface TotalsProps {
+  cart: CartType;
 }
 
 /**
- * Order with pizza list and totals.
+ * Totals or order.
  *
  * @returns {JSX} - order component.
  */
-const Totals = (props): JSX.Element => {
+const Totals = (props: TotalsProps): JSX.Element => {
   const {
     cart
   } = props;

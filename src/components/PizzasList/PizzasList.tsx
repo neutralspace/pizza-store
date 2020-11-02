@@ -24,7 +24,7 @@ class PizzasList extends AbstractPizzasList<PizzasListProps> {
   }
 
   render(): JSX.Element {
-    const { pizzas, cart } = this.props;
+    const { pizzas, cart, chosenCurrency } = this.props;
     const pizzasIds = Object.keys(pizzas);
     const pizzasInCart = cart?.items;
 
@@ -47,6 +47,7 @@ class PizzasList extends AbstractPizzasList<PizzasListProps> {
                 return (
                   <Col className="pizzas-list-item" sm={4} xs={12} key={pizzaId}>
                     <Pizza {...pizzaProps}
+                           chosenCurrency={chosenCurrency}
                            updateCartHandler={this.updateCart}/>
                   </Col>
                 )

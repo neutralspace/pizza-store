@@ -1,0 +1,16 @@
+@import '../../../assets/scss/base/variables';
+@import '../../../assets/scss/base/placeholders';
+
+.currency-sign {
+  @extend %logo-font-style;
+
+  display: block;
+  width: 100px;
+  color: map-get($colors, accent-dark);
+
+  &:hover,
+  &:active {
+    color: map-get($colors, accent-dark);
+    text-decoration: none;
+  }
+}

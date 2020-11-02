@@ -7,6 +7,8 @@
 
   &-content {
     @extend %flex-space-between;
+
+    position: relative;
   }
 }
 
@@ -34,4 +36,12 @@
       color: map-get($colors, accent-bright);
     }
   }
+}
+
+.currency-switch {
+  @extend %accent-font-style-md;
+
+  position: absolute;
+  top: 0;
+  right: 0;
 }
