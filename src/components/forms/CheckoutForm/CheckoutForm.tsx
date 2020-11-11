@@ -99,7 +99,7 @@ class CheckoutForm extends AbstractForm<AbstractFormProps> {
     const { fields } = this.state;
     const fieldsKeys = Object.keys(fields);
     const isUserAuthorized = user?.id;
-    const hasItemsInCart = Boolean(cart.items?.length);
+    const hasItemsInCart = Boolean(Object.keys(cart?.items || {})?.length);
 
     if (!hasItemsInCart) return (
       <Title size={TITLE_SIZES.MD}>
