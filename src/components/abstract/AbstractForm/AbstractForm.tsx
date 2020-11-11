@@ -64,7 +64,6 @@ abstract class AbstractForm<P extends AbstractFormProps> extends React.PureCompo
 
       if (validationRule) {
         const errorText = validationRule(fields[key].value);
-        console.log(key, fields[key].value, fields[key].defaultValue);
 
         validatedFields[key] = {
           ...fields[key],
