@@ -25,8 +25,9 @@ const Order = (props: OrderProps): JSX.Element => {
     noCartAction,
     updateCart,
   } = props;
+  const noCartItems = !cart || Object.keys(cart.items || {}).length === 0;
 
-  if (!cart) return null;
+  if (noCartItems) return null;
 
   return (
     <>
