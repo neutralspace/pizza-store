@@ -1,4 +1,6 @@
 import React from 'react';
+import Modal from 'react-bootstrap/Modal';
+import { EMPTY_CART } from '@helpers';
 import Button from '@components/common/Button/Button';
 import Input from '@components/common/Input/Input';
 import AbstractForm, { AbstractFormProps } from '@components/abstract/AbstractForm/AbstractForm';
@@ -12,11 +14,13 @@ import Title, { TITLE_SIZES } from '@components/common/Title/Title';
  */
 class CheckoutForm extends AbstractForm<AbstractFormProps> {
   private isUserDataApplied: boolean = false;
+  private modalTimeoutId: number;
 
   constructor(props: AbstractFormProps) {
     super(props);
 
     this.state = {
+      showSuccessModal: false,
       fields: {
         name: {
           label: 'Name:',
@@ -52,6 +56,8 @@ class CheckoutForm extends AbstractForm<AbstractFormProps> {
     if (userId) {
       addToOrderHistory(userId, cart);
     }
+    
+    this.handleSuccesfulCheckout();
   }
 
   applyUserData(): void {
@@ -82,6 +88,25 @@ class CheckoutForm extends AbstractForm<AbstractFormProps> {
     }
   }
 
+  handleSuccesfulCheckout(): void {
+    const { updateCart } = this.props;
+
+    updateCart(EMPTY_CART);
+    this.showSuccessModal();
+  }
+
+  showSuccessModal(): void {
+    this.setState({
+      showSuccessModal: true,
+    }, () => {
+      this.modalTimeoutId = window.setTimeout(() => {
+        this.setState({
+          showSuccessModal: false,
+        })
+      }, 2000)
+    });
+  }
+
   componentDidUpdate(): void {
     if (!this.isUserDataApplied) {
       this.applyUserData();
@@ -94,17 +119,33 @@ class CheckoutForm extends AbstractForm<AbstractFormProps> {
     }
   }
 
+  componentWillInmount():void {
+    if (this.modalTimeoutId) {
+      window.clearTimeout(this.modalTimeoutId);
+    }
+  }
+
   render(): JSX.Element {
     const { user, cart } = this.props;
-    const { fields } = this.state;
+    const { showSuccessModal, fields } = this.state;
     const fieldsKeys = Object.keys(fields);
     const isUserAuthorized = user?.id;
     const hasItemsInCart = Boolean(Object.keys(cart?.items || {})?.length);
 
     if (!hasItemsInCart) return (
-      <Title size={TITLE_SIZES.MD}>
-        No items in cart
-      </Title>
+      <>
+        <Title size={TITLE_SIZES.MD}>
+          No items in cart
+        </Title>
+
+        <Modal className="form-info-modal"
+               show={showSuccessModal}
+               centered>
+          <Title size={TITLE_SIZES.SM}>
+            Thank you for your order!
+          </Title>
+        </Modal>
+      </>
     );
 
     return (

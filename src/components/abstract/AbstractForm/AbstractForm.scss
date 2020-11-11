@@ -22,4 +22,11 @@
   &-error {
     color: map-get($font-colors, error);
   }
+
+  &-info-modal {
+    .modal-content {
+      padding: map-get($offsets, lg);
+      text-align: center;
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { addToOrderHistory } from '@actions/user/thunks';
+import { updateCart } from '@actions/cart/thunks';
 import CheckoutForm from '@components/forms/CheckoutForm/CheckoutForm';
 
 const mapStateToProps = (state) => {
@@ -13,5 +14,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps,
   {
     addToOrderHistory,
+    updateCart,
   }
   )(CheckoutForm);
